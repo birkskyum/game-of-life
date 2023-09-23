@@ -1,4 +1,9 @@
+import './index.css'
+
 import p5 from "p5";
+
+const root = document.getElementById('root')
+
 
 const sketch = (p: p5) => {
   p.setup = () => {
@@ -11,4 +16,4 @@ const sketch = (p: p5) => {
   };
 };
 
-new p5(sketch);
+new p5(sketch, root!);
