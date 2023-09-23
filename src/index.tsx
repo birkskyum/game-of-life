@@ -9,7 +9,7 @@ const sketch = (p: p5) => {
   const liveCellColor = p.color("#22c55e");
   const borderColor = p.color("#292524");
   const resolution = 50;
-  const frameRate = 1;
+  const frameRate = 4;
 
   /**
    * 2次元配列を作成する
@@ -99,6 +99,14 @@ const sketch = (p: p5) => {
 
     grid = next;
   };
+
+  p.mouseClicked = () => {
+    if (p.isLooping()) {
+      p.noLoop();
+    } else {
+      p.loop();
+    }
+  }
 };
 
 new p5(sketch, root!);
