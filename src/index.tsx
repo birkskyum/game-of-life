@@ -31,8 +31,8 @@ const sketch = (p: p5) => {
     for (let i = -1; i < 2; i++) {
       for (let j = -1; j < 2; j++) {
 
-        let col = (x + i + cols) % cols;
-        let row = (y + i + rows) % rows;
+        const col = (x + i + cols) % cols;
+        const row = (y + i + rows) % rows;
 
         sum += grid[col][row];
       }
@@ -65,8 +65,8 @@ const sketch = (p: p5) => {
     // グリッドを表示する
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        let x = i * resolution;
-        let y = j * resolution;
+        const x = i * resolution;
+        const y = j * resolution;
 
         if (grid[i][j] == 1) {
           p.fill(liveCellColor);
@@ -82,10 +82,10 @@ const sketch = (p: p5) => {
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         // 現在の状態
-        let state = grid[i][j];
+        const state = grid[i][j];
 
         // 隣り合っていて，生きているセルの数を数える
-        let neighbors = countNeighbors(grid, i, j);
+        const neighbors = countNeighbors(grid, i, j);
 
         if (state == 0 && neighbors == 3) {
           next[i][j] = 1;
