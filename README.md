@@ -1,14 +1,16 @@
 # README
 
-Deno + TypeScript + p5.js で Conway の Life Game を実装した例です．
+This is an example of implementing Conway's Life Game with Deno + TypeScript + p5.js.
 
-## プレビュー
+## preview locally
+
+Install deno and run the following code:
 
 ```bash
 deno task dev
 ```
 
-## 参考
+## Links
 
-* [deno-p5-vanilla](https://github.com/birkskyum/deno-p5-vanilla/tree/main) deno で p5.js を動かす方法を参考にしました
-* [The Game of Life / The Coding Train](https://thecodingtrain.com/challenges/85-the-game-of-life) これを見て作ろうと思いました．
+* [deno-p5-vanilla](https://github.com/birkskyum/deno-p5-vanilla/tree/main) Reference to how to run p5.js in deno.
+* [The Game of Life / The Coding Train](https://thecodingtrain.com/challenges/85-the-game-of-life) I got my inspiration from here.
