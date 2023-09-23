@@ -5,13 +5,17 @@ const root = document.getElementById('root')
 const sketch = (p: p5) => {
   let cols: number;
   let rows: number;
-  let resolution = 40;
-  let frameRate = 8;
+  const backgroundColor = p.color("#0c0a09");
+  const liveCellColor = p.color("#22c55e");
+  const borderColor = p.color("#292524");
+  const resolution = 50;
+  const frameRate = 1;
 
   /**
    * 2次元配列を作成する
    */
   function make2DArray(cols: number, rows: number): number[][] {
+    console.log(cols, rows);
     let arr = new Array(cols);
     for (let i = 0; i < arr.length; i++) {
       arr[i] = new Array(rows);
@@ -41,11 +45,11 @@ const sketch = (p: p5) => {
   let grid: number[][];
 
   p.setup = () => {
-    p.createCanvas(800, 800);
+    p.createCanvas(p.windowWidth, p.windowHeight);
     p.frameRate(frameRate);
 
-    cols = p.width / resolution;
-    rows = p.height / resolution;
+    cols = Math.floor(p.width / resolution);
+    rows = Math.floor(p.height / resolution);
 
     grid = make2DArray(cols, rows);
     for (let i = 0; i < cols; i++) {
@@ -56,8 +60,7 @@ const sketch = (p: p5) => {
   };
 
   p.draw = () => {
-    // 背景を黒にする
-    p.background(0);
+    p.background(backgroundColor);
 
     // グリッドを表示する
     for (let i = 0; i < cols; i++) {
@@ -66,8 +69,8 @@ const sketch = (p: p5) => {
         let y = j * resolution;
 
         if (grid[i][j] == 1) {
-          p.fill(255);
-          p.stroke(0);
+          p.fill(liveCellColor);
+          p.stroke(borderColor);
           p.rect(x, y, resolution - 1, resolution - 1);
         }
       }
