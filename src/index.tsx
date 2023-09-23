@@ -1,5 +1,3 @@
-import './index.css'
-
 import p5 from "p5";
 
 const root = document.getElementById('root')
