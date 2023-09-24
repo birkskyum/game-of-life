@@ -1,3 +1,4 @@
+// @deno-types="npm:@types/p5"
 import p5 from "p5";
 import {RESOLUTION, FRAME_RATE, DEAD, ALIVE} from "./constants";
 
