@@ -1,4 +1,5 @@
 import p5 from "p5";
+import {RESOLUTION, FRAME_RATE, DEAD, ALIVE} from "./constants";
 
 const root = document.getElementById('root')
 
@@ -8,8 +9,6 @@ const sketch = (p: p5) => {
   const backgroundColor = p.color("#0c0a09");
   const liveCellColor = p.color("#22c55e");
   const borderColor = p.color("#292524");
-  const resolution = 50;
-  const frameRate = 4;
 
   /**
    * create 2D array
@@ -46,10 +45,10 @@ const sketch = (p: p5) => {
 
   p.setup = () => {
     p.createCanvas(p.windowWidth, p.windowHeight);
-    p.frameRate(frameRate);
+    p.frameRate(FRAME_RATE);
 
-    cols = Math.floor(p.width / resolution);
-    rows = Math.floor(p.height / resolution);
+    cols = Math.floor(p.width / RESOLUTION);
+    rows = Math.floor(p.height / RESOLUTION);
 
     grid = make2DArray(cols, rows);
     for (let i = 0; i < cols; i++) {
@@ -65,13 +64,13 @@ const sketch = (p: p5) => {
     // display grid
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        const x = i * resolution;
-        const y = j * resolution;
+        const x = i * RESOLUTION;
+        const y = j * RESOLUTION;
 
         if (grid[i][j] == 1) {
           p.fill(liveCellColor);
           p.stroke(borderColor);
-          p.rect(x, y, resolution - 1, resolution - 1);
+          p.rect(x, y, RESOLUTION - 1, RESOLUTION - 1);
         }
       }
     }
@@ -81,16 +80,16 @@ const sketch = (p: p5) => {
     // calculate next based on grid
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
-        // 現在の状態
+        // get current state
         const state = grid[i][j];
 
         // count live neighbors
         const neighbors = countNeighbors(grid, i, j);
 
-        if (state == 0 && neighbors == 3) {
-          next[i][j] = 1;
-        } else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
-          next[i][j] = 0;
+        if (state == DEAD && neighbors == 3) {
+          next[i][j] = ALIVE;
+        } else if (state == ALIVE && (neighbors < 2 || neighbors > 3)) {
+          next[i][j] = DEAD;
         } else {
           next[i][j] = state;
         }
