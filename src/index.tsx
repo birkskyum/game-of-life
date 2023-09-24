@@ -5,6 +5,7 @@ import {RESOLUTION, FRAME_RATE, DEAD, ALIVE} from "./constants";
 const root = document.getElementById('root')
 
 const sketch = (p: p5) => {
+
   let cols: number;
   let rows: number;
   const backgroundColor = p.color("#0c0a09");
