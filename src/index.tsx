@@ -12,7 +12,7 @@ const sketch = (p: p5) => {
   const frameRate = 4;
 
   /**
-   * 2次元配列を作成する
+   * create 2D array
    */
   function make2DArray(cols: number, rows: number): number[][] {
     console.log(cols, rows);
@@ -24,7 +24,7 @@ const sketch = (p: p5) => {
   }
 
   /**
-   * 特定のセルの周りの生きているセルを数える
+   * count live neighbors of a specific cell
    */
   function countNeighbors(grid: number[][], x: number, y: number): number {
     let sum = 0;
@@ -37,7 +37,7 @@ const sketch = (p: p5) => {
         sum += grid[col][row];
       }
     }
-    // 自分自身は数えない
+    // don't count itself
     sum -= grid[x][y];
     return sum;
   }
@@ -62,7 +62,7 @@ const sketch = (p: p5) => {
   p.draw = () => {
     p.background(backgroundColor);
 
-    // グリッドを表示する
+    // display grid
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         const x = i * resolution;
@@ -78,13 +78,13 @@ const sketch = (p: p5) => {
 
     let next = make2DArray(cols, rows);
 
-    // gird の値に基づいて次の世代の計算をする
+    // calculate next based on grid
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         // 現在の状態
         const state = grid[i][j];
 
-        // 隣り合っていて，生きているセルの数を数える
+        // count live neighbors
         const neighbors = countNeighbors(grid, i, j);
 
         if (state == 0 && neighbors == 3) {
